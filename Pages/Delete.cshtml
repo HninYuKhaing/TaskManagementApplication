@@ -1,0 +1,75 @@
+﻿@page "{id:int}"
+
+@model TaskManagementApplication.Pages.DeleteModel
+@{
+    ViewData["Title"] = "Delete Task";
+}
+
+<div class="card bg-light delete-form">
+    <article class="card-body mx-auto" style="max-width: 500px;">
+        <h4 class="card-title mt-3 text-center">Delete Task</h4>
+        <p class="text-center">Are you sure you want to delete this task?</p>
+
+        <div>
+            <h4>Task Details</h4>
+            <hr />
+            <dl class="row">
+                <dt class="col-sm-4">
+                    @Html.DisplayNameFor(model => model.TaskItem.Title)
+                </dt>
+                <dd class="col-sm-6">
+                    @Html.DisplayFor(model => model.TaskItem.Title)
+                </dd>
+                <dt class="col-sm-4">
+                    @Html.DisplayNameFor(model => model.TaskItem.Description)
+                </dt>
+                <dd class="col-sm-6">
+                    @Html.DisplayFor(model => model.TaskItem.Description)
+                </dd>
+                <dt class="col-sm-4">
+                    @Html.DisplayNameFor(model => model.TaskItem.Project.Name)
+                </dt>
+                <dd class="col-sm-6">
+                    @Html.DisplayFor(model => model.TaskItem.Project.Name)
+                </dd>
+                <dt class="col-sm-4">
+                    @Html.DisplayNameFor(model => model.TaskItem.DueDate)
+                </dt>
+                <dd class="col-sm-6">
+                    @Html.DisplayFor(model => model.TaskItem.DueDate)
+                </dd>
+                <dt class="col-sm-4">
+                    Status
+                </dt>
+                <dd class="col-sm-6">
+                    <span style="background-color: @Html.DisplayFor(model => model.TaskItem.Status.Color); color: Black; padding: 5px; border-radius: 3px;">
+                        @Html.DisplayFor(model => model.TaskItem.Status.Name)
+                    </span>
+
+                </dd>
+                <dt class="col-sm-4">
+                    Priority
+                </dt>
+                <dd class="col-sm-6">
+                    <span style="background-color: @Html.DisplayFor(model => model.TaskItem.Priority.Color); color: Black; padding: 5px; border-radius: 3px;">
+                        @Html.DisplayFor(model => model.TaskItem.Priority.Name)
+                    </span>
+                </dd>
+                <dt class="col-sm-4">
+                    Full Name
+                </dt>
+                <dd class="col-sm-6">
+                    @Html.DisplayFor(model => model.TaskItem.Assignee.FullName)
+                </dd>
+            </dl>
+        </div>
+
+    </article>
+</div>
+
+<form method="post">
+    <input type="hidden" asp-for="TaskItem.Id" />
+    <button type="submit" class="btn btn-danger">Delete</button> |
+    <a asp-page="Index">Cancel</a>
+</form>
+
